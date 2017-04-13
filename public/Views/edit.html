@@ -1,0 +1,69 @@
+
+
+<div class="col-lg-2 col-md-2" ></div>
+<div class="col-lg-8 col-md-8" ng-controller="customersForm_ctrl">
+    <form name="editForm" class="customerForm">
+
+        <!--MESSAGE-->
+        <div ng-show="formMsg" class="formMsg alert alert-warning">{{formMsg}}</div>
+
+        <!--NAME-->
+        <div class="form-group row has-success has-feedback">
+            <label>Name</label>
+            <input type="text" class="form-control" name="name"  ng-model="formInput.name"  required chr-limit ng-pattern="/^[a-zA-Z ]*$/">
+            <span ng-hide="editForm.name.$invalid" class="glyphicon glyphicon-ok form-control-feedback" aria-hidden="true"></span>
+            <span ng-show="editForm.name.$error.pattern" class="inputMsg text-warning">Text only please</span>
+        </div>
+
+        <!--EMAIL-->
+        <div class="form-group row has-success has-feedback">
+            <label>Email</label>
+            <input type="email" class="form-control" name="email" ng-model="formInput.email" required>
+            <span  ng-show="!editForm.email.$error.email" class="glyphicon glyphicon-ok form-control-feedback" aria-hidden="true"></span>
+            <div role="alert">
+                <span class="text-warning" ng-show="editForm.email.$touched && editForm.email.$error.email">
+                    Not valid email!</span>
+            </div>
+        </div>
+
+        <!--PHONE-->
+        <div class="form-group row has-success has-feedback">
+            <label>Phone</label>
+            <input type="tel" class="form-control" name="phone"  ng-model="formInput.phone" required chr-limit ng-pattern="/^[0-9 #\-]+$/i">
+            <span ng-hide="editForm.phone.$invalid" class="glyphicon glyphicon-ok form-control-feedback" aria-hidden="true"></span>
+            <span ng-show="editForm.phone.$error.pattern" class="inputMsg text-warning">Characters not allowed</span>
+        </div>
+
+        <!--AGE-->
+        <div class="form-group row has-success has-feedback">
+            <label >Age</label>
+            <input type="text" class="form-control" name="age"  ng-model="formInput.age" required ng-pattern="/^(120|[1-9]?[0-9]?)$/">
+            <span ng-show="editForm.age.$valid" class="glyphicon glyphicon-ok form-control-feedback" aria-hidden="true"></span>
+            <span ng-show="editForm.age.$error.pattern" class="inputMsg text-warning">Invalid value</span>
+        </div>
+
+        <!--GENDER-->
+        <div class="form-group row has-success has-feedback">
+            <label class="form-check-label">Gender
+                <input class="form-check-input" value="male" type="radio" ng-model="formInput.gender">
+                Male
+                <input class="form-check-input" value="female" type="radio" ng-model="formInput.gender">
+                Female
+            </label>
+        </div>
+
+        <!--CITY-->
+        <div class="form-group row has-success has-feedback">
+            <select class="form-control" ng-options="city as city.city_name for city in citiesData"
+                    ng-model="citySelect" ng-change="cityChanged()" ></select>
+        </div>
+
+        <!--BUTTONS-->
+        <div class="row">
+            <div class="col-xs-6" ng-show="edit"><button type="submit" class="btn btn-primary" ng-click="updateCustomer(editForm.$valid)">Update</button></div>
+            <div class="col-xs-6" ng-show="!edit"><button type="submit" class="btn btn-primary" ng-click="addCustomer(editForm.$valid)">Add customer</button></div>
+            <div class="col-xs-6 form_link" style="text-align:right"><a ui-sref="customers">Cancel</a></div>
+        </div>
+    </form>
+</div>
+<div class="col-lg-2 col-md-2"></div>

@@ -1,0 +1,59 @@
+<div class="col-lg-2 col-md-2" ></div>
+<div class="col-lg-8 col-md-8" ng-controller="userForm_ctrl">
+    <form name="regForm" class="userForm">
+
+        <!--MESSAGE-->
+        <div ng-show="formMsg" class="formMsg alert alert-warning">{{formMsg}}</div>
+
+        <!--EMAIL-->
+        <div class="form-group has-success has-feedback">
+            <label>Email address</label>
+            <input type="email" class="form-control" name="email" ng-model="formInput.email" required>
+            <span  ng-show="!regForm.email.$error.email" class="glyphicon glyphicon-ok form-control-feedback" aria-hidden="true"></span>
+            <div role="alert">
+                <span class="text-warning" ng-show="regForm.email.$touched && regForm.email.$error.email">
+                    Not valid email!</span>
+            </div>
+        </div>
+
+        <!--FIRSTNAME-->
+        <div class="form-group has-success has-feedback">
+            <label>First name</label>
+            <input type="text" class="form-control" name="firstname"  ng-model="formInput.firstname"  required chr-limit ng-pattern="/^(\D)+$/">
+            <span ng-hide="regForm.firstname.$invalid" class="glyphicon glyphicon-ok form-control-feedback" aria-hidden="true"></span>
+            <span ng-show="regForm.firstname.$error.pattern" class="inputMsg text-warning">Text only please</span>
+        </div>
+
+        <!--LASTNAME-->
+        <div class="form-group has-success has-feedback">
+            <label>Last name</label>
+            <input type="text" class="form-control" name="lastname"  ng-model="formInput.lastname" required chr-limit ng-pattern="/^(\D)+$/">
+            <span ng-hide="regForm.lastname.$invalid" class="glyphicon glyphicon-ok form-control-feedback" aria-hidden="true"></span>
+            <span ng-show="regForm.lastname.$error.pattern" class="inputMsg text-warning">Text only please</span>
+        </div>
+
+        <!--PASSWORD-->
+        <div class="form-group has-success has-feedback">
+            <label>Password</label>
+            <input type="password" class="form-control" name="password"  ng-model="formInput.password" required chr-limit ng-pattern="/^[a-z0-9]+$/i">
+            <span ng-show="regForm.password.$valid" class="glyphicon glyphicon-ok form-control-feedback" aria-hidden="true"></span>
+            <span ng-show="regForm.password.$error.pattern" class="inputMsg text-warning">No special characters</span>
+        </div>
+
+        <!--PASSWORD2-->
+        <div class="form-group has-success has-feedback">
+            <label>Password2</label>
+            <input type="password" class="form-control" name="password2" compare-pass="formInput.password" ng-model="formInput.password2" required chr-limit ng-pattern="/^[a-z0-9]+$/i">
+            <span ng-show="regForm.password2.$valid" class="glyphicon glyphicon-ok form-control-feedback" aria-hidden="true"></span>
+            <span ng-show="regForm.password2.$error.pattern" class="inputMsg text-warning">No special characters</span>
+            <span ng-show="regForm.password2.$touched && regForm.password2.$error.compareTo" class="inputMsgg text-warning">Pass not match</span>
+        </div>
+
+        <!--BUTTONS-->
+        <div class="row">
+            <div class="col-xs-6"><button type="submit" class="btn btn-primary" ng-click="registerUser(regForm.$valid)">Register</button></div>
+            <div class="col-xs-6 form_link"><a ui-sref="login">Login</a></div>
+        </div>
+    </form>
+</div>
+<div class="col-lg-2 col-md-2"></div>

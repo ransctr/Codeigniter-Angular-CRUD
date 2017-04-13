@@ -1,0 +1,27 @@
+
+<div>
+    <div class="row">
+        <div class="col-xs-12 col-sm-6">
+            <form enctype="multipart/form-data" action="/upload.php" id="form1" method="post">
+                <div class="controls fileUpload_container">
+                    <input type="file" id="fileToUpload" name="fileToUpload" onchange="uploadFile();" />
+                    <button class="btn btn-primary">Click and select image</button>
+                </div>
+                <p class="help-block"></p>
+            </form>
+            <ul>
+                <li id="filename" ></li>
+                <li id="filesize"></li>
+                <li id="filetype"></li>
+            </ul>
+        </div>
+        <div class="col-xs-12 col-sm-6">
+            <img id="theImage" src="public/upload/image.jpg" ></imq>
+        </div>
+    </div>
+    <div class="loader_container">
+        <div class="loader"></div>
+        <div id="progressNumber"></div>
+    </div>
+</div>
+

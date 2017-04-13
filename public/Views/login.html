@@ -1,0 +1,34 @@
+<div class="col-lg-3 col-md-3" ></div>
+<div class="col-lg-6 col-md-6 center"  ng-controller="userForm_ctrl">
+    <form name="loginForm" class="userForm loginForm">
+
+        <!--MESSAGE-->
+        <div ng-show="formMsg" class="formMsg alert alert-warning">{{formMsg}}</div>
+
+        <!--EMAIL-->
+        <div class="form-group has-success has-feedback">
+            <label>Email address</label>
+            <input type="email" class="form-control" name="email" ng-model="formInput.email" required>
+            <span  ng-show="!loginForm.email.$error.email" class="glyphicon glyphicon-ok form-control-feedback" aria-hidden="true"></span>
+            <div role="alert">
+                <span class="text-warning" ng-show="loginForm.email.$touched && loginForm.email.$error.email">
+                    Not valid email!</span>
+            </div>
+        </div>
+
+        <!--PASSWORD-->
+        <div class="form-group has-success has-feedback">
+            <label>Password</label>
+            <input type="password" class="form-control" name="password"  ng-model="formInput.password" required chr-limit ng-pattern="/^[a-z0-9]+$/i">
+            <span ng-hide="loginForm.password.$invalid" class="glyphicon glyphicon-ok form-control-feedback" aria-hidden="true"></span>
+            <span ng-show="loginForm.password.$error.pattern" class="inputMsg text-warning">No special characters</span>
+        </div>
+
+        <!--BUTTONS-->
+        <div class="row">
+            <div class="col-xs-6"><button type="submit" class="btn btn-primary" ng-click="loginUser(loginForm.$valid)">Login</button></div>
+            <div class="col-xs-6 form_link"><a ui-sref="register">Register</a></div>
+        </div>
+    </form>
+</div>
+<div class="col-lg-3 col-md-3"></div>
